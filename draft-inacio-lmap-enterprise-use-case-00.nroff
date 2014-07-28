@@ -1,0 +1,223 @@
+.pl 10.0i
+.po 0
+.ll 7.2i
+.lt 7.2i
+.nr LL 7.2i
+.nr LT 7.2i
+.ds LF Christopher Inacio 
+.ds RF FORMFEED[Page %]
+.ds LH INTERNET DRAFT
+.ds RH July 30, 2013
+.ds CH draft-inacio-lmap-enterprise-use-case-00
+.ds CF Expires January 31, 2014
+.hy 0
+.nh
+.ad l
+.in 0
+
+.nf
+.tl 'INTERNET-DRAFT''Christopher Inacio'
+.tl 'Intended Status: Informational''Carnegie Mellon University'
+.tl 'Expires: January 31, 2014''July 30, 2013'
+.fi
+
+.\" Note. The ".tl" directive is used to generate the leading header 
+.\" in Internet drafts. The information specified after ".tl" provides
+.\" left, center and right components of a line separated by the ' character
+.\" in the following manner:
+.\" 
+.\"  .tl '<left component>'<center component>'<right component>'
+.\"
+.\" Only the left and right components are used in Internet-draft headers
+.\" This and other comments in this template can safely be deleted.
+
+.ce 2
+Large-Scale Broadband Measurement Enterprise Use-Case
+draft-inacio-lmap-enterprise-use-case-00
+.fi
+.in 3
+
+
+.ti 0
+Abstract
+
+The Large-Scale Measurement of Broadband Performance (LMAP) working group is defining mechanisms to monitor network performance of large-scale networks.  The use case will describe how very large enterprise networks are not very different from the networks considered by other LMAP use cases and that most measurements are useful to both use cases.  In addition this use case will state the need for the ability to have finer grained observation related to User Experience potentially on a per application basis.
+
+
+.ti 0
+Status of this Memo
+
+This Internet-Draft is submitted to IETF in full conformance with the provisions of BCP\078 and BCP\079.
+
+Internet-Drafts are working documents of the Internet Engineering Task Force (IETF), its areas, and its working groups.  Note that other groups may also distribute working documents as \%Internet-Drafts.
+
+Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."
+
+The list of current Internet-Drafts can be accessed at \%http://www.ietf.org/1id-abstracts.html
+
+The list of Internet-Draft Shadow Directories can be accessed at http://www.ietf.org/shadow.html
+
+
+.ti 0
+Copyright and License Notice\" Boilerplate from December 2009
+
+.\" NOTE: Insert current <year> in the following paragraph
+Copyright (c) 2013 IETF Trust and the persons identified as the document authors. All rights reserved.
+
+This document is subject to BCP\078 and the IETF Trust's Legal Provisions Relating to IETF Documents \%(http://trustee.ietf.org/license-info) in effect on the date of publication of this document. Please review these documents carefully, as they describe your rights and restrictions with respect to this document. Code Components extracted from this document must include Simplified BSD License text as described in Section\04.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.
+
+
+
+.\" \# TD4  -- Set TOC depth by altering this value (TD5 = depth 5)
+.\" \# TOC  -- Beginning of auto updated Table of Contents
+.in 0
+Table of Contents
+
+.nf
+   1  Introduction  . . . . . . . . . . . . . . . . . . . . . . . . .  3
+     1.1  Terminology . . . . . . . . . . . . . . . . . . . . . . . .  3
+   2. Large Scale Enterprise Use Case . . . . . . . . . . . . . . . .  3
+     2.1 Similarities and Differences to ISPs and broadband users . .  3
+     2.2 Additions for Enterprise Measurement . . . . . . . . . . . .  4
+     2.3 The Goal for Enhanced Measurement  . . . . . . . . . . . . .  4
+   3 Requirements . . . . . . . . . . . . . . . . . . . . . . . . . .  4
+   4  Security Considerations . . . . . . . . . . . . . . . . . . . .  6
+   5  IANA Considerations . . . . . . . . . . . . . . . . . . . . . .  6
+   6  References  . . . . . . . . . . . . . . . . . . . . . . . . . .  6
+     6.1  Normative References  . . . . . . . . . . . . . . . . . . .  6
+     6.2  Informative References  . . . . . . . . . . . . . . . . . .  6
+   Authors' Addresses . . . . . . . . . . . . . . . . . . . . . . . .  6
+.fi
+.in 3
+
+.\" \# ETC -- End of auto updated Table of Contents
+
+.bp
+.ti 0
+1  Introduction
+
+The Large-Scale Measurement of Broadband Performance (LMAP) working group is charged with creating a uniform Information Model in order to measure large-scale network performance.  In addition to the Information Model, the working group is charged with creating a Control Protocol and a Report Protocol with their associated data models.
+
+The Information Model and associated Data Models necessary for monitoring and regulating Internet Service Provider (ISP) networks are closely shared with the monitoring of large scale enterprise networks.  In large scale enterprises, with multiple campuses distributed throughout countries or throughout the world, monitoring campus scale network activity and cross-campus network activity is closely related to monitoring ISP activity.
+
+The additional considerations for this large scale enterprise monitoring are the needs to be able to be able to make measurements aligned to enterprise applications and services beyond simple bandwidth and latency measurements.
+
+.ti 0
+1.1  Terminology
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in RFC 2119 [RFC2119].
+
+
+
+.ti 0
+2. Large Scale Enterprise Use Case
+
+.ti 0
+2.1 Similarities and Differences to ISPs and broadband users
+
+Many large scale enterprises centralized critical and/or expensive resources at a few select locations.  For example, login directory services due to their critical role in the infrastructure and security needs, email and calendaring systems, and certain accounting and human resource functions.  In large scale multinational organizations, these daily use resources may exist on a different continent then portions of the user base, with complex networks existing at both the remote location and where the critical resource is located.
+
+Users of these large scale networks have similar needs from their network providers (usually an internal sub-organization) that general broadband users expect from their ISP.  Depending on the organization, the service level agreement (SLA) may be more or less strict.  The users within these organizations have the same need to diagnose and verify the performance provided to them as broadband users.  Similarly, the sub-organization (referred to as IT (information technology) for the rest of this document) has the same need to test, measure, diagnose, and repair the network as a broadband ISP.
+
+The difference between the enterprise users and typical broadband users is their requirement for special SLAs for certain critical resources within their global corporate network.  Certain operations within the corporate network, when performing poorly at the global level, may have a disproportionate impact on the users experience when those SLAs are violated.  The second issue is that often the IT component within an enterprise is responsible for both application performance and network performance.
+
+.ti 0
+2.2 Additions for Enterprise Measurement
+
+Many large enterprises with geographically distributed resources partition their network monitoring related to geographic sub-units of the enterprise.  The lack of uniform measurement and models means that problems that occur across sites are often not solved without significant user pressure.
+
+The additional metrics necessary include the ability to distinguish application specific traffic flows in a passive manner and report on the performance end-to-end.  Combining this data with typical network performance data, nominally: bandwidth, latency, routing, etc. allows a fine grained view of network activity and resource utilization.
+
+.ti 0
+2.3 The Goal for Enhanced Measurement
+
+The goal of being able to measure the network in holistic ways that can be related to application experience is to answer the age old question:  Is it the network or the application?  By adding the ability to optionally measure in ways associated to application specific traffic, determining network impact to user experience will be possible.
+
+.ti 0
+3 Requirements
+
+* Passive monitoring of application related network measurements.
+
+* Non-averaged recording of application network data.
+
+* Ability to correlate application related network measurements to non-application related network measurements.
+
+* Ability to track, at possibly per-packet activity level, performance measurements of specific flows, possibly sampled
+
+* Ideally, a way for applications to announce themselves to the network for passive measurement.
+
+* Simple uniform methods (common ports, DPI) to inspect traffic to associate the traffic with application usage
+
+
+
+.bp
+.ti 0
+4  Security Considerations
+
+Security considerations are appropriate and necessary within the Control Protocol and the Report Protocol.
+
+.ti 0
+5  IANA Considerations
+
+None.
+
+
+.ti 0
+6  References
+
+.ti 0 
+6.1  Normative References
+
+.in 14
+.\" \# REF  -- Managed reference list. Syntax: [RFC]nnnn[;Label], ... ,[RFC]nnnn[;Label]
+.\" \# 2119;KEYWORDS, 1776, RFC1925;TRUTHS
+.ti 3
+[KEYWORDS] Bradner, S., "Key words for use in RFCs to Indicate Requirement Levels", BCP\014, RFC\02119, March 1997.
+
+.ti 3
+[RFC1776]  Crocker, S., "The Address is the Message", RFC\01776, April 1 1995.
+
+.ti 3
+[TRUTHS]   Callon, R., "The Twelve Networking Truths", RFC\01925, April 1 1996.
+
+.\" \# ERF -- End of managed reference list
+.\" ----------------------------------------
+.\" The reference list can be changed at any time by altering the RFC list in the line below the .\" \# REF directive
+.\" In order to execute any change, click on the 'Update All' button or select "Update 'Table of Contents' and References"
+.\" from the "Edit" menu or press <F3>.
+.\" NOTE: Managed reference list requires NroffEdit version 1.40 or later.
+
+.ti 0
+6.2  Informative References
+
+.in 14
+.\" \# REF  -- Managed reference list. Syntax: [RFC]nnnn[;Label], ... ,[RFC]nnnn[;Label]
+.\" \# 3514;EVILBIT, 5513, 5514
+.ti 3
+[EVILBIT]  Bellovin, S., "The Security Flag in the IPv4 Header", RFC\03514, April 1 2003.
+
+.ti 3
+[RFC5513]  Farrel, A., "IANA Considerations for Three Letter Acronyms", RFC\05513, April 1 2009.
+
+.ti 3
+[RFC5514]  Vyncke, E., "IPv6 over Social Networks", RFC\05514, April 1 2009.
+
+.\" \# ERF -- End of managed reference list
+.in 3
+
+
+.ti 0
+Authors' Addresses
+
+.sp
+.nf
+Christopher Inacio
+Carnegie Mellon University
+5000 Forbes Ave.,
+Pittsburgh, PA 15213
+
+
+EMail: inacio@andrew.cmu.edu
+.sp
+.fi
+
